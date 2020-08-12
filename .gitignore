@@ -1,3 +1,6 @@
+# Exclude IntelliJ folder
+.idea
+
 # Project exclude paths
 /project/target/
 /target/

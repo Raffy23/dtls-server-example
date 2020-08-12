@@ -46,36 +46,6 @@ class DtlsClient(pkServer: BCECPublicKey, mtu: Int) extends AutoCloseable {
 
     override def getSupportedCipherSuites: Array[Int] = Array(CipherSuite.TLS_ECDHE_ECDSA_WITH_AES_128_GCM_SHA256)
 
-    override def notifyHandshakeBeginning(): Unit = {
-      super.notifyHandshakeBeginning()
-      println("[Client] notifyHandshakeBeginning")
-    }
-    override def notifyServerVersion(serverVersion: ProtocolVersion): Unit = {
-      super.notifyServerVersion(serverVersion)
-      println(s"[Client] Server version: ${serverVersion.getName}")
-    }
-
-    override def notifyAlertReceived(alertLevel: Short, alertDescription: Short): Unit = {
-      super.notifyAlertReceived(alertLevel, alertDescription)
-      println(s"[Client] notifyAlertReceived($alertLevel,$alertDescription)")
-    }
-
-    override def notifyHandshakeComplete(): Unit = {
-      super.notifyHandshakeComplete()
-      println(s"[Client] notifyHandshakeComplete")
-    }
-
-    override def notifySelectedCipherSuite(selectedCipherSuite: Int): Unit = {
-      super.notifySelectedCipherSuite(selectedCipherSuite)
-      println(s"[Client] notifySelectedCipherSuite($selectedCipherSuite)")
-    }
-
-    override def notifyAlertRaised(alertLevel: Short, alertDescription: Short, message: String, cause: Throwable): Unit = {
-      super.notifyAlertRaised(alertLevel, alertDescription, message, cause)
-      println(s"[Client] notifyAlertRaised($alertLevel,$alertDescription,$message,${if (cause != null) cause.getMessage else "<null>"})")
-      if (cause != null) cause.printStackTrace()
-    }
-
   }
 
   // Connect and start handshake
